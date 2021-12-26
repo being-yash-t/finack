@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1000"
+   height="1000"
+   viewBox="0 0 264.58333 264.58333"
+   version="1.1"
+   id="svg12"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="app_logo.svg"
+   inkscape:export-filename="C:\Users\yasht\Desktop\logo.png"
+   inkscape:export-xdpi="96.036186"
+   inkscape:export-ydpi="96.036186"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview14"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:document-units="mm"
+     showgrid="false"
+     units="px"
+     inkscape:zoom="0.19420595"
+     inkscape:cx="-1485.5364"
+     inkscape:cy="496.89518"
+     inkscape:window-width="1920"
+     inkscape:window-height="1057"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs9" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <circle
+       style="fill:#333258;fill-opacity:1;stroke-width:0.355977"
+       id="path38"
+       cx="132.29167"
+       cy="132.29167"
+       r="132.29167" />
+    <g
+       style="fill:#ffffff;fill-opacity:1"
+       id="g1054"
+       transform="matrix(4.2905405,0,0,4.2905405,27.173424,29.318695)">
+      <path
+         d="M 32.25,26 C 31.5596,26 31,26.5596 31,27.25 c 0,0.6904 0.5596,1.25 1.25,1.25 h 4.5 C 37.4404,28.5 38,27.9404 38,27.25 38,26.5596 37.4404,26 36.75,26 Z M 6,10 V 35.75 C 6,39.2018 8.79822,42 12.25,42 h 24.5 C 40.2018,42 43,39.2018 43,35.75 v -17.5 c 0,-3.0237 -2.1472,-5.5459 -5,-6.125 V 10.25 C 38,7.90279 36.0972,6 33.75,6 H 10.25 C 7.98671,6 6.13664,7.76916 6.00723,10 Z m 29.5,0.25 V 12 H 10.25 C 9.2835,12 8.5,11.2165 8.5,10.25 8.5,9.2835 9.2835,8.5 10.25,8.5 h 23.5 c 0.9665,0 1.75,0.7835 1.75,1.75 z m -27,4.25 h 28.25 c 2.0711,0 3.75,1.6789 3.75,3.75 v 17.5 c 0,2.0711 -1.6789,3.75 -3.75,3.75 H 12.25 C 10.1789,39.5 8.5,37.8211 8.5,35.75 Z"
+         fill="#212121"
+         id="path1045"
+         style="fill:#ffffff;fill-opacity:1" />
+    </g>
+  </g>
+</svg>
