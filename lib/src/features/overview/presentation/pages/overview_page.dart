@@ -1,3 +1,5 @@
+import 'package:finack/src/presentation/custom_widgets/sliver_app_bar.dart';
+import 'package:finack/src/presentation/themes/themes.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 
@@ -7,16 +9,18 @@ class OverviewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
+    final theme = Theme.of(context);
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
-            flexibleSpace: const FlexibleSpaceBar(
-              title: Text("Overview"),
-              centerTitle: true,
+          const CSliverAppBar(title: "Overview"),
+          SliverList(
+              delegate: SliverChildBuilderDelegate(
+            (_, index) => ListTile(
+              title: Text("eee $index"),
             ),
-            expandedHeight: mediaQuery.size.height / 4.5,
-          ),
+            childCount: 100,
+          )),
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(

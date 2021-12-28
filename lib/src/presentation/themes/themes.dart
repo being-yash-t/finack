@@ -28,25 +28,34 @@ ThemeData _createTheme({
 }) {
   final isDark = brightness == Brightness.dark;
   return ThemeData(
-    androidOverscrollIndicator: AndroidOverscrollIndicator.stretch,
-    brightness: brightness,
-    scaffoldBackgroundColor: backgroundColor,
-    textTheme: _textTheme,
-    backgroundColor: backgroundColor,
-    primaryColor: primaryColor,
-    appBarTheme: _getAppBarTheme(isDark),
-    dialogTheme: _getDialogTheme,
-    chipTheme: _getChipTheme(isDark),
-    cardTheme: _getCardTheme(isDark),
-    buttonTheme: _getButtonTheme(isDark),
-    textButtonTheme: _getTextButtonTheme(isDark),
-    elevatedButtonTheme: _getElevatedButtonTheme(isDark),
-    outlinedButtonTheme: _getOutlinedButtonTheme(isDark),
-    pageTransitionsTheme: _getPageTransitionsTheme,
-    bottomSheetTheme: _getBottomSheetTheme,
-    bottomNavigationBarTheme: _getBottomNavigationBarTheme(isDark),
-  );
+      androidOverscrollIndicator: AndroidOverscrollIndicator.stretch,
+      brightness: brightness,
+      scaffoldBackgroundColor: backgroundColor,
+      textTheme: _textTheme,
+      backgroundColor: backgroundColor,
+      primarySwatch: primarySwatch,
+      primaryColor: primaryColor,
+      appBarTheme: _getAppBarTheme(isDark),
+      dialogTheme: _getDialogTheme,
+      chipTheme: _getChipTheme(isDark),
+      cardTheme: _getCardTheme(isDark),
+      buttonTheme: _getButtonTheme(isDark),
+      textButtonTheme: _getTextButtonTheme(isDark),
+      elevatedButtonTheme: _getElevatedButtonTheme(isDark),
+      outlinedButtonTheme: _getOutlinedButtonTheme(isDark),
+      pageTransitionsTheme: _getPageTransitionsTheme,
+      bottomSheetTheme: _getBottomSheetTheme,
+      bottomNavigationBarTheme: _getBottomNavigationBarTheme(isDark),
+      floatingActionButtonTheme: _getFloatingActionButtonTheme(isDark));
 }
+
+FloatingActionButtonThemeData _getFloatingActionButtonTheme(bool isDark) =>
+    FloatingActionButtonThemeData(
+        foregroundColor: isDark ? Colors.white : Colors.black,
+        backgroundColor: isDark ? primarySwatch[900] : primarySwatch[100],
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ));
 
 ThemeData get lightTheme => _createTheme(
       brightness: Brightness.light,
@@ -70,7 +79,8 @@ BottomSheetThemeData get _getBottomSheetTheme => const BottomSheetThemeData(
 
 AppBarTheme _getAppBarTheme(bool isDark) => AppBarTheme(
       centerTitle: true,
-      backgroundColor: isDark ? Colors.black : Colors.white,
+      // backgroundColor: isDark ? Colors.black : Colors.white,
+      backgroundColor: isDark ? primarySwatch[900] : primarySwatch[100],
       foregroundColor: isDark ? Colors.white : Colors.black,
       iconTheme: IconThemeData(color: isDark ? Colors.white : Colors.black),
       elevation: 0,
@@ -170,7 +180,7 @@ BottomNavigationBarThemeData _getBottomNavigationBarTheme(bool isDark) =>
       backgroundColor: isDark ? primarySwatch[900] : primarySwatch[100],
       // backgroundColor: isDark ? Colors.black : Colors.white,
       // unselectedItemColor: Colors.white54,
-      selectedItemColor: isDark ? primaryColor: primaryExtraLight,
+      selectedItemColor: isDark ? primaryColor : primaryExtraLight,
       unselectedItemColor: isDark ? primaryColor : Colors.black87,
       enableFeedback: true,
       type: BottomNavigationBarType.fixed,
@@ -197,14 +207,14 @@ TextTheme get _textTheme => TextTheme(
           fontSize: 17, fontWeight: FontWeight.w400, letterSpacing: 0.15),
       subtitle2: GoogleFonts.cabin(
           fontSize: 15, fontWeight: FontWeight.w500, letterSpacing: 0.1),
-      bodyText1: GoogleFonts.tajawal(
+      bodyText1: GoogleFonts.montserrat(
           fontSize: 19, fontWeight: FontWeight.w400, letterSpacing: 0.5),
-      bodyText2: GoogleFonts.tajawal(
+      bodyText2: GoogleFonts.montserrat(
           fontSize: 16, fontWeight: FontWeight.w400, letterSpacing: 0.25),
-      button: GoogleFonts.tajawal(
+      button: GoogleFonts.montserrat(
           fontSize: 16, fontWeight: FontWeight.w500, letterSpacing: 1.25),
-      caption: GoogleFonts.tajawal(
+      caption: GoogleFonts.montserrat(
           fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.4),
-      overline: GoogleFonts.tajawal(
+      overline: GoogleFonts.montserrat(
           fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 1.5),
     );
