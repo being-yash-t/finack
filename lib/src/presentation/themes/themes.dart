@@ -16,17 +16,17 @@ const primarySwatch = MaterialColor(4281610842, {
   900: Color(0xff131221)
 });
 // TODO: update these 3 colors
-const Color primaryLight = Color.fromRGBO(101, 172, 240, 1);
-const Color primaryExtraLight = Color.fromRGBO(240, 244, 253, 1);
+const Color primaryLight = Color.fromRGBO(76, 76, 88, 1.0);
+const Color primaryExtraLight = Color.fromRGBO(157, 160, 210, 1.0);
 const Color primaryExtraDark = Color.fromRGBO(27, 30, 38, 1);
 
-const List<Color> mainGradient = [primaryColor, primaryLight];
+// const List<Color> mainGradient = [primaryColor, primaryLight];
 
 ThemeData _createTheme({
   required Brightness brightness,
   required Color backgroundColor,
 }) {
-  final isDark = brightness != Brightness.dark;
+  final isDark = brightness == Brightness.dark;
   return ThemeData(
     androidOverscrollIndicator: AndroidOverscrollIndicator.stretch,
     brightness: brightness,
@@ -72,9 +72,6 @@ AppBarTheme _getAppBarTheme(bool isDark) => AppBarTheme(
       centerTitle: true,
       backgroundColor: isDark ? Colors.black : Colors.white,
       foregroundColor: isDark ? Colors.white : Colors.black,
-      color: isDark
-          ? primaryExtraDark.withOpacity(0.9)
-          : primaryExtraLight.withOpacity(0.9),
       iconTheme: IconThemeData(color: isDark ? Colors.white : Colors.black),
       elevation: 0,
     );
@@ -170,8 +167,11 @@ PageTransitionsTheme get _getPageTransitionsTheme => const PageTransitionsTheme(
 
 BottomNavigationBarThemeData _getBottomNavigationBarTheme(bool isDark) =>
     BottomNavigationBarThemeData(
-      backgroundColor: isDark ? primarySwatch[100] : primarySwatch[900],
+      backgroundColor: isDark ? primarySwatch[900] : primarySwatch[100],
+      // backgroundColor: isDark ? Colors.black : Colors.white,
       // unselectedItemColor: Colors.white54,
+      selectedItemColor: isDark ? primaryColor: primaryExtraLight,
+      unselectedItemColor: isDark ? primaryColor : Colors.black87,
       enableFeedback: true,
       type: BottomNavigationBarType.fixed,
       showUnselectedLabels: true,

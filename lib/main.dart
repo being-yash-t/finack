@@ -37,7 +37,6 @@ class FailedToInitApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
-        child: Text("Failed to initialize app, contact developer"));
+    return const Text("Failed to initialize app, contact developer");
   }
 }
