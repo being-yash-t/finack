@@ -1,3 +1,4 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 
 class CSliverAppBar extends StatelessWidget {
@@ -13,11 +14,18 @@ class CSliverAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final mediaQuery = MediaQuery.of(context);
+    final parentScaffold = Scaffold.of(Scaffold.of(context).context);
     return SliverAppBar(
       pinned: true,
+      leading: parentScaffold.hasDrawer
+          ? IconButton(
+              icon: const Icon(FluentIcons.navigation_20_regular),
+              onPressed: parentScaffold.openDrawer,
+            )
+          : null,
       flexibleSpace: FlexibleSpaceBar(
         background: Container(color: theme.scaffoldBackgroundColor),
-        titlePadding: const EdgeInsets.all(8),
+        centerTitle: true,
         title: Text(title, style: theme.textTheme.headline6),
       ),
       actions: actions,

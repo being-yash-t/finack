@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:setu_farmer_app/src/core/entities/user_plans.dart';
+import 'package:finack/src/core/entities/user_plans.dart';
 
 abstract class Transaction extends Equatable {
   final DateTime dateTime;
