@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:finack/src/core/entities/user_plans.dart';
+import 'package:finack/src/core/utils/date_utils.dart';
 
 abstract class Transaction extends Equatable {
   final DateTime dateTime;
@@ -11,6 +12,10 @@ abstract class Transaction extends Equatable {
     required this.amount,
     required this.message,
   });
+
+  String get id => dateTime.getDocIdFromDate();
+
+  Map<String, dynamic> get toMap;
 }
 
 class DebitTransaction extends Transaction {
@@ -29,6 +34,13 @@ class DebitTransaction extends Transaction {
 
   @override
   List<Object?> get props => [debitedFromMargin, dateTime, amount, message];
+
+  @override
+  Map<String, dynamic> get toMap => {
+        'amount': amount,
+        'message': message,
+        'debitedFromMargin': debitedFromMargin.id,
+      };
 }
 
 class CreditTransaction extends Transaction {
@@ -57,4 +69,12 @@ class CreditTransaction extends Transaction {
         amount,
         message,
       ];
+
+  @override
+  Map<String, dynamic> get toMap => {
+    'amount':amount,
+    'message':message,
+    'isExtraSalary': isExtraSalary,
+    'creditedForMargin': creditedForMargin?.id,
+  };
 }

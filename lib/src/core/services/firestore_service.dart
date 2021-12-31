@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finack/src/core/constants/firebase.dart';
+import 'package:finack/src/core/entities/transaction.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FirestoreHelper {
@@ -16,5 +17,9 @@ class FirestoreHelper {
     FirebaseFirestore.instance.collection(usersCollection).doc(user.uid).set({
       'phoneNo': user.phoneNumber,
     }, SetOptions(merge: true));
+  }
+
+  void newDebitTransaction(DebitTransaction debitTransaction) {
+    
   }
 }

@@ -2,11 +2,13 @@ import 'package:equatable/equatable.dart';
 
 enum IncomeType { tpa, lpa, cpa }
 
-class FinancialMargin extends Equatable{
+class FinancialMargin extends Equatable {
+  final String? id;
   final String title;
   final double percentage;
 
   const FinancialMargin({
+    this.id,
     required this.title,
     required this.percentage,
   });
@@ -15,7 +17,7 @@ class FinancialMargin extends Equatable{
   List<Object?> get props => [title, percentage];
 }
 
-class UserPlans extends Equatable{
+class UserPlans extends Equatable {
   final String userId;
   final double yearlyIncome;
   final IncomeType incomeUnit;
