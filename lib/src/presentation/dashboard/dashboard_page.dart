@@ -1,4 +1,10 @@
+import 'package:animations/animations.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:finack/src/core/constants/firebase.dart';
+import 'package:finack/src/features/expenses/presentation/pages/expenses_page.dart';
+import 'package:finack/src/features/journal/presentation/pages/journal_page.dart';
+import 'package:finack/src/features/overview/presentation/pages/overview_page.dart';
+import 'package:finack/src/features/settings/presentation/pages/settings_page.dart';
 import 'package:finack/src/presentation/custom_widgets/bottom_navigation_bar.dart';
 import 'package:finack/src/presentation/routing/router.gr.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
@@ -10,6 +16,8 @@ class DashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AutoTabsRouter(
+      duration: animationDuration,
+      lazyLoad: true,
       routes: const [
         OverviewRouter(),
         JournalRouter(),
@@ -18,46 +26,92 @@ class DashboardPage extends StatelessWidget {
       ],
       builder: (context, child, animation) {
         final tabsRouter = AutoTabsRouter.of(context);
-        return Scaffold(
-          drawer: const Drawer(),
-          // TODO: replace with fade through transition
-          body: FadeTransition(
-            opacity: animation,
-            child: child,
-          ),
-          bottomNavigationBar: CBottomNavBar(
-            currentIndex: tabsRouter.activeIndex,
-            onTap: tabsRouter.setActiveIndex,
-            items: _getBottomNavbarItems(tabsRouter.activeIndex),
-          ),
+        return LayoutBuilder(
+          builder: (context, dimens) {
+            // Tablet Layout
+            if (dimens.maxWidth >= 600) {
+              // Add this line
+              return Scaffold(
+                body: Row(
+                  children: [
+                    NavigationRail(
+                      extended: dimens.maxWidth >= 800,
+                      minExtendedWidth: 180,
+                      onDestinationSelected: tabsRouter.setActiveIndex,
+                      selectedIndex: tabsRouter.activeIndex,
+                      destinations:
+                          _getBottomNavbarItems(tabsRouter.activeIndex)
+                              .map(
+                                (NavigationDestination e) =>
+                                    NavigationRailDestination(
+                                  icon: e.icon,
+                                  label: Text(e.label),
+                                ),
+                              )
+                              .toList(),
+                    ),
+                    Expanded(child: child),
+                  ],
+                ),
+              );
+            } // Add this line
+
+            // Mobile Layout
+            // Add from here...
+            return Scaffold(
+              drawer: const Drawer(),
+              // TODO: replace with fade through transition
+              body: FadeTransition(
+                opacity: animation,
+                child: child,
+              ),
+              bottomNavigationBar: NavigationBar(
+                onDestinationSelected: tabsRouter.setActiveIndex,
+                selectedIndex: tabsRouter.activeIndex,
+                destinations: _getBottomNavbarItems(tabsRouter.activeIndex),
+              ),
+            );
+          },
         );
       },
     );
   }
 
-  List<BottomNavigationBarItem> _getBottomNavbarItems(int activeIndex) => [
-        BottomNavigationBarItem(
+  List<NavigationDestination> _getBottomNavbarItems(int activeIndex) => [
+        NavigationDestination(
           icon: activeIndex == 0
-              ? const Icon(FluentIcons.board_20_filled)
-              : const Icon(FluentIcons.board_20_regular),
+              ? const Icon(FluentIcons.board_20_filled, key: Key('1 active'))
+              : const Icon(
+                  FluentIcons.board_20_regular,
+                  key: Key('1 inActive'),
+                ),
           label: 'Overview',
         ),
-        BottomNavigationBarItem(
+        NavigationDestination(
           icon: activeIndex == 1
-              ? const Icon(FluentIcons.notebook_24_filled)
-              : const Icon(FluentIcons.notebook_24_regular),
+              ? const Icon(FluentIcons.notebook_24_filled, key: Key('2 active'))
+              : const Icon(
+                  FluentIcons.notebook_24_regular,
+                  key: Key('2 inActive'),
+                ),
           label: 'Journal',
         ),
-        BottomNavigationBarItem(
+        NavigationDestination(
           icon: activeIndex == 2
-              ? const Icon(FluentIcons.money_20_filled)
-              : const Icon(FluentIcons.money_20_regular),
+              ? const Icon(FluentIcons.money_20_filled, key: Key('3 active'))
+              : const Icon(
+                  FluentIcons.money_20_regular,
+                  key: Key('3 inActive'),
+                ),
           label: 'Expenses',
         ),
-        BottomNavigationBarItem(
+        NavigationDestination(
           icon: activeIndex == 3
-              ? const Icon(FluentIcons.settings_20_filled)
-              : const Icon(FluentIcons.settings_20_regular),
+              ? const Icon(FluentIcons.settings_20_filled, key: Key('4 active'))
+              : const Icon(
+                  FluentIcons.settings_20_regular,
+                  key: Key('4 inActive'),
+                ),
           label: 'Settings',
         ),
       ];

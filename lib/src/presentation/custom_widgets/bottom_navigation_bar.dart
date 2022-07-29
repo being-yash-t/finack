@@ -1,3 +1,4 @@
+import 'package:finack/src/core/constants/firebase.dart';
 import 'package:flutter/material.dart';
 
 class CBottomNavBar extends StatelessWidget {
@@ -33,37 +34,45 @@ class CBottomNavBar extends StatelessWidget {
                   child: Center(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        if (isSelected)
-                          Card(
+                        AnimatedContainer(
+                          duration: animationDuration,
+                          decoration: BoxDecoration(
                             color: isSelected
-                                ? theme.bottomNavigationBarTheme.selectedItemColor
-                                : theme.bottomNavigationBarTheme.backgroundColor,
-                            clipBehavior: Clip.antiAlias,
-                            // elevation: isSelected ? 4 : 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(14),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 4, bottom: 2, left: 12, right: 12),
-                              child: e.icon,
-                            ),
-                          )
-                        else
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                top: 8, bottom: 6, left: 12, right: 12),
-                            child: e.icon,
+                                ? theme
+                                    .bottomNavigationBarTheme.selectedItemColor
+                                : theme
+                                    .bottomNavigationBarTheme.backgroundColor,
+                            boxShadow: [
+                              if (isSelected)
+                                const BoxShadow(
+                                  color: Colors.black12,
+                                  blurRadius: 5,
+                                )
+                            ],
+                            borderRadius: BorderRadius.circular(16),
                           ),
+                          clipBehavior: Clip.antiAlias,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 4,
+                              horizontal: 12,
+                            ),
+                            child: AnimatedSwitcher(
+                              child: e.icon,
+                              duration: animationDuration,
+                            ),
+                          ),
+                        ),
                         if (e.label != null)
                           Padding(
                             padding: const EdgeInsets.only(top: 2, bottom: 4),
                             child: Text(
                               e.label!,
                               style: items.indexOf(e) == currentIndex
-                                  ? theme
-                                      .bottomNavigationBarTheme.selectedLabelStyle
+                                  ? theme.bottomNavigationBarTheme
+                                      .selectedLabelStyle
                                   : theme.bottomNavigationBarTheme
                                       .unselectedLabelStyle,
                             ),

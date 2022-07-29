@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "857505145693",
+    "project_id": "track-my-fin",
+    "storage_bucket": "track-my-fin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:857505145693:android:7114e20b2d8e005bf2beb4",
+        "android_client_info": {
+          "package_name": "com.zephyr.finack"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "857505145693-dk6fi20t8lll2p9ou2oul8ekkg468o1o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpYfQCo4yIhYvfGJAM9fkEEr7-s7_hFYo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "857505145693-dk6fi20t8lll2p9ou2oul8ekkg468o1o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,1 +1,1 @@
-class NoUserSignedInException implements Exception{}
+class NoUserSignedInException implements Exception {}

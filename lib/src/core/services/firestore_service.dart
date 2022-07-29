@@ -12,14 +12,11 @@ class FirestoreHelper {
         'photoURL': user.photoURL,
       }, SetOptions(merge: true));
 
-  void updatePhoneNo() {
-    final user = FirebaseAuth.instance.currentUser!;
-    FirebaseFirestore.instance.collection(usersCollection).doc(user.uid).set({
-      'phoneNo': user.phoneNumber,
+  void updatePhoneNo(String uid, String? phoneNumber) {
+    FirebaseFirestore.instance.collection(usersCollection).doc(uid).set({
+      'phoneNo': phoneNumber,
     }, SetOptions(merge: true));
   }
 
-  void newDebitTransaction(DebitTransaction debitTransaction) {
-    
-  }
+  void newDebitTransaction(DebitTransaction debitTransaction) {}
 }

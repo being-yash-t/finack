@@ -2,24 +2,29 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-const primaryColor = Color.fromRGBO(51, 50, 88, 1);
-const primarySwatch = MaterialColor(4281610842, {
-  50: Color(0xffefeff6),
-  100: Color(0xffdfdeed),
-  200: Color(0xffbfbddb),
-  300: Color(0xff9f9dc8),
-  400: Color(0xff7f7cb6),
-  500: Color(0xff5f5ba4),
-  600: Color(0xff4c4983),
-  700: Color(0xff393762),
-  800: Color(0xff262442),
-  900: Color(0xff131221)
+const primaryColor = Color(0xFF3F51B5);
+const primarySwatch = MaterialColor(0xFF3F51B5, <int, Color>{
+  50: Color(0xFFE8EAF6),
+  100: Color(0xFFC5CBE9),
+  200: Color(0xFF9FA8DA),
+  300: Color(0xFF7985CB),
+  400: Color(0xFF5C6BC0),
+  500: Color(0xFF3F51B5),
+  600: Color(0xFF394AAE),
+  700: Color(0xFF3140A5),
+  800: Color(0xFF29379D),
+  900: Color(0xFF1B278D),
 });
 // TODO: update these 3 colors
 const Color primaryLight = Color.fromRGBO(76, 76, 88, 1.0);
 const Color primaryExtraLight = Color.fromRGBO(157, 160, 210, 1.0);
 const Color primaryExtraDark = Color.fromRGBO(27, 30, 38, 1);
 
+const Color errorExtraLight = Color.fromRGBO(210, 157, 157, 1.0);
+const Color errorExtraDark = Color.fromRGBO(38, 27, 27, 1.0);
+
+const Color successExtraLight = Color.fromRGBO(172, 210, 157, 1.0);
+const Color successExtraDark = Color.fromRGBO(30, 38, 27, 1.0);
 // const List<Color> mainGradient = [primaryColor, primaryLight];
 
 ThemeData _createTheme({
@@ -28,7 +33,7 @@ ThemeData _createTheme({
 }) {
   final isDark = brightness == Brightness.dark;
   return ThemeData(
-      androidOverscrollIndicator: AndroidOverscrollIndicator.stretch,
+      useMaterial3: true,
       brightness: brightness,
       scaffoldBackgroundColor: backgroundColor,
       textTheme: _textTheme,
@@ -45,9 +50,22 @@ ThemeData _createTheme({
       outlinedButtonTheme: _getOutlinedButtonTheme(isDark),
       pageTransitionsTheme: _getPageTransitionsTheme,
       bottomSheetTheme: _getBottomSheetTheme,
-      bottomNavigationBarTheme: _getBottomNavigationBarTheme(isDark),
+      navigationBarTheme: _getBottomNavigationBarTheme(isDark),
+      navigationRailTheme: _navigationRailTheme(isDark),
+      progressIndicatorTheme: _progressIndicatorTheme(isDark),
       floatingActionButtonTheme: _getFloatingActionButtonTheme(isDark));
 }
+
+ProgressIndicatorThemeData _progressIndicatorTheme(bool isDark) =>
+    ProgressIndicatorThemeData(
+      circularTrackColor: isDark ? primaryExtraDark : primaryExtraLight,
+    );
+
+NavigationRailThemeData _navigationRailTheme(bool isDark) =>
+    NavigationRailThemeData(
+      backgroundColor: isDark ? primarySwatch[900] : primarySwatch[100],
+      indicatorColor: isDark ? Colors.white : primaryColor,
+    );
 
 FloatingActionButtonThemeData _getFloatingActionButtonTheme(bool isDark) =>
     FloatingActionButtonThemeData(
@@ -175,16 +193,17 @@ PageTransitionsTheme get _getPageTransitionsTheme => const PageTransitionsTheme(
       },
     );
 
-BottomNavigationBarThemeData _getBottomNavigationBarTheme(bool isDark) =>
-    BottomNavigationBarThemeData(
+NavigationBarThemeData _getBottomNavigationBarTheme(bool isDark) =>
+    NavigationBarThemeData(
       backgroundColor: isDark ? primarySwatch[900] : primarySwatch[100],
+      indicatorColor: isDark ? Colors.white : primaryColor,
       // backgroundColor: isDark ? Colors.black : Colors.white,
       // unselectedItemColor: Colors.white54,
-      selectedItemColor: isDark ? primaryColor : primaryExtraLight,
-      unselectedItemColor: isDark ? primaryColor : Colors.black87,
-      enableFeedback: true,
-      type: BottomNavigationBarType.fixed,
-      showUnselectedLabels: true,
+      // selectedItemColor: isDark ? primaryColor : primaryExtraLight,
+      // unselectedItemColor: isDark ? primaryColor : Colors.black87,
+      // enableFeedback: true,
+      // type: BottomNavigationBarType.fixed,
+      // showUnselectedLabels: true,
       elevation: 0,
       // backgroundColor: isDark
       //     ? primaryExtraDark.withOpacity(0.9)

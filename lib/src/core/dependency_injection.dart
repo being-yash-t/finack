@@ -1,10 +1,13 @@
 import 'package:finack/src/core/services/auth_service.dart';
 import 'package:finack/src/core/services/firestore_service.dart';
-import 'package:get/instance_manager.dart';
+import 'package:finack/src/presentation/routing/router.gr.dart';
+import 'package:get_it/get_it.dart';
 
-S findInstance<S>({String? tag}) => Get.find<S>(tag: tag);
+final _getIt = GetIt.instance;
+T findInstance<T extends Object>() => _getIt<T>();
 
 initDI() {
-  Get.put(() => FirestoreHelper(), permanent: true);
-  Get.put(() => AuthService(), permanent: true);
+  _getIt.registerSingleton<FirestoreHelper>(FirestoreHelper());
+  _getIt.registerSingleton<AuthService>(AuthService());
+  _getIt.registerSingleton<AppRouter>(AppRouter());
 }

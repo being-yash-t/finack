@@ -1,6 +1,7 @@
+import 'package:finack/src/core/dependency_injection.dart';
 import 'package:finack/src/core/errors/exceptions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:get/instance_manager.dart';
+import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import 'firestore_service.dart';
@@ -25,10 +26,7 @@ class AuthService {
     return phoneNo != null && phoneNo != "";
   }
 
-  Stream<User?> get getAuthStream => FirebaseAuth.instance.authStateChanges();
-  Stream<User?> get getIdTokenUpdates => FirebaseAuth.instance.idTokenChanges();
-
-  Future signInWithGoogle() async {
+  Future<User?> signInWithGoogle() async {
     GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
     if (googleUser == null) {
       throw Exception("Google sign in failed");
@@ -38,44 +36,65 @@ class AuthService {
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
     );
-    User user =
-    (await FirebaseAuth.instance.signInWithCredential(credential)).user!;
-
-    Get.find<FirestoreHelper>().addUpdateUserData(user);
-  }
-
-  Future savePhoneNo(PhoneAuthCredential credential) async {
-    await FirebaseAuth.instance.currentUser!.updatePhoneNumber(credential);
-    Get.find<FirestoreHelper>().updatePhoneNo();
-  }
-
-  Future verifyPhone(
-      String phoneNo, {
-        required Function(PhoneAuthCredential) verificationCompleted,
-        required Function(FirebaseAuthException) verificationFailed,
-        required Function(String, int?) codeSent,
-        required Function(String) codeRetrievalTimeout,
-      }) {
-    return FirebaseAuth.instance.verifyPhoneNumber(
-      phoneNumber: phoneNo,
-      verificationCompleted: verificationCompleted,
-      verificationFailed: verificationFailed,
-      codeSent: codeSent,
-      codeAutoRetrievalTimeout: codeRetrievalTimeout,
-    );
-  }
-
-  Future signInWithEmail(String email, String password) async {
-    await FirebaseAuth.instance
-        .signInWithEmailAndPassword(email: email, password: password);
-    if (FirebaseAuth.instance.currentUser != null) {
-      Get.find<FirestoreHelper>()
-          .addUpdateUserData(FirebaseAuth.instance.currentUser!);
+    try {
+      final singInResult = await FirebaseAuth.instance.signInWithCredential(
+        credential,
+      );
+      return singInResult.user!;
+    } on FirebaseAuthException catch (e) {
+      debugPrint(e.stackTrace?.toString());
+      return null;
     }
   }
 
-  Future sendPasswordResetEmail(String email) =>
-      FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+  Future<bool> savePhoneCredential(PhoneAuthCredential credential) async {
+    try {
+      await FirebaseAuth.instance.currentUser!.updatePhoneNumber(credential);
+      return true;
+    } on FirebaseAuthException catch (e) {
+      debugPrint(e.stackTrace?.toString());
+      return false;
+    }
+  }
+
+  Future verifyPhone(
+    String phoneNo, {
+    required Function(PhoneAuthCredential) verificationCompleted,
+    required Function(FirebaseAuthException) verificationFailed,
+    required Function(String, int?) codeSent,
+    required Function(String) codeRetrievalTimeout,
+  }) =>
+      FirebaseAuth.instance.verifyPhoneNumber(
+        phoneNumber: phoneNo,
+        verificationCompleted: verificationCompleted,
+        verificationFailed: verificationFailed,
+        codeSent: codeSent,
+        codeAutoRetrievalTimeout: codeRetrievalTimeout,
+      );
+
+  Future<User?> signInWithEmail(String email, String password) async {
+    try {
+      final signInResult =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return signInResult.user!;
+    } on FirebaseAuthException catch (e) {
+      debugPrint(e.stackTrace?.toString());
+      return null;
+    }
+  }
+
+  Future<bool> sendPasswordResetEmail(String email) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      return true;
+    } on FirebaseAuthException catch (e) {
+      debugPrint(e.stackTrace?.toString());
+      return false;
+    }
+  }
 
   Future signOut() async {
     await FirebaseAuth.instance.signOut();

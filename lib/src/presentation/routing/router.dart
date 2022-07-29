@@ -10,7 +10,7 @@ import 'package:finack/src/presentation/dashboard/dashboard_page.dart';
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
     AutoRoute(
-      path: '/',
+      path: '/dashboard',
       page: DashboardPage,
       children: [
         AutoRoute(
@@ -18,7 +18,7 @@ import 'package:finack/src/presentation/dashboard/dashboard_page.dart';
           name: 'OverviewRouter',
           page: EmptyRouterPage,
           children: [
-            AutoRoute(path: '', page: OverviewPage),
+            AutoRoute(path: '', page: OverviewPage, initial: true),
             // AutoRoute(path: ':postId', page: SinglePostPage),
           ],
         ),
