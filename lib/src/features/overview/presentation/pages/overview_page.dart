@@ -1,7 +1,9 @@
 import 'dart:math';
 
+import 'package:finack/src/core/utils/context_extensions.dart';
 import 'package:finack/src/presentation/custom_widgets/sliver_app_bar.dart';
 import 'package:finack/src/presentation/custom_widgets/target_summary_chart.dart';
+import 'package:finack/src/presentation/custom_widgets/transaction_log_widget.dart';
 import 'package:finack/src/presentation/themes/themes.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
@@ -13,13 +15,14 @@ class OverviewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     final theme = Theme.of(context);
+    final random = Random();
     return Scaffold(
       body: CustomScrollView(
         slivers: [
           const CSliverAppBar(title: "Overview"),
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8.0),
               child: Wrap(
                 alignment: WrapAlignment.center,
                 children: [
@@ -34,12 +37,17 @@ class OverviewPage extends StatelessWidget {
             ),
           ),
           SliverList(
-              delegate: SliverChildBuilderDelegate(
-            (_, index) => ListTile(
-              title: Text("eee $index"),
+            delegate: SliverChildBuilderDelegate(
+              (_, index) => TransactionLogWidget(
+                log: TransactionLog(
+                  type: TransactionType.values[random.nextInt(3)],
+                  amount: random.nextDouble(),
+                  comment: random.nextBool() ? "Test transaction": null,
+                ),
+              ),
+              childCount: 100,
             ),
-            childCount: 100,
-          )),
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(

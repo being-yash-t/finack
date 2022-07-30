@@ -4,14 +4,14 @@ import 'package:finack/src/features/overview/presentation/pages/overview_page.da
 import 'package:finack/src/features/journal/presentation/pages/journal_page.dart';
 import 'package:finack/src/features/login/presentation/pages/login_page.dart';
 import 'package:finack/src/features/settings/presentation/pages/settings_page.dart';
-import 'package:finack/src/presentation/dashboard/dashboard_page.dart';
+import 'package:finack/src/presentation/dashboard/dashboard_screen.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
     AutoRoute(
       path: '/dashboard',
-      page: DashboardPage,
+      page: DashboardScreen,
       children: [
         AutoRoute(
           path: 'overview',

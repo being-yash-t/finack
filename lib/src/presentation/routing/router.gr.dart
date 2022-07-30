@@ -18,7 +18,7 @@ import '../../features/journal/presentation/pages/journal_page.dart' as _i6;
 import '../../features/login/presentation/pages/login_page.dart' as _i2;
 import '../../features/overview/presentation/pages/overview_page.dart' as _i5;
 import '../../features/settings/presentation/pages/settings_page.dart' as _i4;
-import '../dashboard/dashboard_page.dart' as _i1;
+import '../dashboard/dashboard_screen.dart' as _i1;
 
 class AppRouter extends _i3.RootStackRouter {
   AppRouter([_i8.GlobalKey<_i8.NavigatorState>? navigatorKey])
@@ -28,7 +28,7 @@ class AppRouter extends _i3.RootStackRouter {
   final Map<String, _i3.PageFactory> pagesMap = {
     DashboardRoute.name: (routeData) {
       return _i3.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i1.DashboardPage());
+          routeData: routeData, child: const _i1.DashboardScreen());
     },
     LoginRoute.name: (routeData) {
       return _i3.MaterialPageX<dynamic>(
@@ -96,7 +96,7 @@ class AppRouter extends _i3.RootStackRouter {
 }
 
 /// generated route for
-/// [_i1.DashboardPage]
+/// [_i1.DashboardScreen]
 class DashboardRoute extends _i3.PageRouteInfo<void> {
   const DashboardRoute({List<_i3.PageRouteInfo>? children})
       : super(DashboardRoute.name, path: '/', initialChildren: children);
