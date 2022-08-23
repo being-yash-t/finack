@@ -1,8 +1,28 @@
 import 'dart:math';
 
-import 'package:finack/src/core/constants/firebase.dart';
-import 'package:finack/src/presentation/themes/themes.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+
+import '../../core/constants/firebase.dart';
+
+class PersonalTarget extends Equatable {
+  final String? id;
+  final String title;
+  final bool isArchived;
+  final double targetPercentage;
+  final double achievedPercentage;
+
+  const PersonalTarget({
+    this.id,
+    required this.title,
+    required this.isArchived,
+    required this.targetPercentage,
+    required this.achievedPercentage,
+  });
+
+  @override
+  List<Object?> get props => [id, title, isArchived, targetPercentage];
+}
 
 class TargetSummaryChart extends StatelessWidget {
   final double value;

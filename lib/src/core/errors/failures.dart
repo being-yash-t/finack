@@ -6,5 +6,8 @@ abstract class Failure {
 
 class NoUserSignedInFailure extends Failure {
   const NoUserSignedInFailure() : super("No Users Signed in");
+}
 
+class UnknownFailure extends Failure {
+  UnknownFailure(super.error);
 }

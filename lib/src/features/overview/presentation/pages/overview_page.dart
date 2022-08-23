@@ -1,10 +1,8 @@
 import 'dart:math';
 
-import 'package:finack/src/core/utils/context_extensions.dart';
 import 'package:finack/src/presentation/custom_widgets/sliver_app_bar.dart';
 import 'package:finack/src/presentation/custom_widgets/target_summary_chart.dart';
 import 'package:finack/src/presentation/custom_widgets/transaction_log_widget.dart';
-import 'package:finack/src/presentation/themes/themes.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 
@@ -13,8 +11,6 @@ class OverviewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
-    final theme = Theme.of(context);
     final random = Random();
     return Scaffold(
       body: CustomScrollView(
@@ -41,7 +37,7 @@ class OverviewPage extends StatelessWidget {
               (_, index) => TransactionLogWidget(
                 log: TransactionLog(
                   type: TransactionType.values[random.nextInt(3)],
-                  amount: random.nextDouble(),
+                  amount: random.nextDouble() * 256,
                   comment: random.nextBool() ? "Test transaction": null,
                 ),
               ),

@@ -1,10 +1,8 @@
-import 'package:finack/src/core/dependency_injection.dart';
+import 'package:finack/src/core/constants/firebase.dart';
 import 'package:finack/src/core/errors/exceptions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
-import 'firestore_service.dart';
 
 class AuthService {
   User? get currentUser => FirebaseAuth.instance.currentUser;
@@ -23,10 +21,10 @@ class AuthService {
   bool get isSigned => FirebaseAuth.instance.currentUser != null;
   bool get hasPhoneVerified {
     final phoneNo = FirebaseAuth.instance.currentUser!.phoneNumber;
-    return phoneNo != null && phoneNo != "";
+    return (phoneNo ?? '').trim().isNotEmpty;
   }
 
-  Future<User?> signInWithGoogle() async {
+  Future<User> signInWithGoogle() async {
     GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
     if (googleUser == null) {
       throw Exception("Google sign in failed");
@@ -43,7 +41,7 @@ class AuthService {
       return singInResult.user!;
     } on FirebaseAuthException catch (e) {
       debugPrint(e.stackTrace?.toString());
-      return null;
+      throw ExceptionWithMessage(e.message ?? unknownError);
     }
   }
 

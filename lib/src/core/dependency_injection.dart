@@ -6,7 +6,7 @@ import 'package:get_it/get_it.dart';
 final _getIt = GetIt.instance;
 T findInstance<T extends Object>() => _getIt<T>();
 
-initDI() {
+void initDI() {
   _getIt.registerSingleton<FirestoreHelper>(FirestoreHelper());
   _getIt.registerSingleton<AuthService>(AuthService());
   _getIt.registerSingleton<AppRouter>(AppRouter());

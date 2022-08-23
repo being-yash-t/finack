@@ -3,6 +3,7 @@ import 'package:finack/src/features/expenses/presentation/pages/expenses_page.da
 import 'package:finack/src/features/overview/presentation/pages/overview_page.dart';
 import 'package:finack/src/features/journal/presentation/pages/journal_page.dart';
 import 'package:finack/src/features/login/presentation/pages/login_page.dart';
+import 'package:finack/src/features/phone_verification/presentation/pages/phone_verification_screen.dart';
 import 'package:finack/src/features/settings/presentation/pages/settings_page.dart';
 import 'package:finack/src/presentation/dashboard/dashboard_screen.dart';
 
@@ -50,7 +51,11 @@ import 'package:finack/src/presentation/dashboard/dashboard_screen.dart';
     AutoRoute(
       path: '/login',
       page: LoginPage,
-    )
+    ),
+    AutoRoute(
+      path: '/phoneVerification',
+      page: PhoneVerificationScreen,
+    ),
   ],
 )
 class $AppRouter {}
