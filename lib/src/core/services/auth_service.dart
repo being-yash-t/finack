@@ -41,17 +41,25 @@ class AuthService {
       return singInResult.user!;
     } on FirebaseAuthException catch (e) {
       debugPrint(e.stackTrace?.toString());
-      throw ExceptionWithMessage(e.message ?? unknownError);
+      throw ExceptionWithMessage(e.message ?? kUnknownError);
     }
   }
 
-  Future<bool> savePhoneCredential(PhoneAuthCredential credential) async {
+  PhoneAuthCredential createPhoneCredential(
+    String verificationId,
+    String code,
+  ) =>
+      PhoneAuthProvider.credential(
+        verificationId: verificationId,
+        smsCode: code,
+      );
+
+  Future<void> savePhoneCredential(PhoneAuthCredential credential) async {
     try {
       await FirebaseAuth.instance.currentUser!.updatePhoneNumber(credential);
-      return true;
     } on FirebaseAuthException catch (e) {
       debugPrint(e.stackTrace?.toString());
-      return false;
+      throw ExceptionWithMessage(e.message ?? kUnknownError);
     }
   }
 

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:finack/src/features/create_bucket/presentation/screen/add_edit_bucket_screen.dart';
 import 'package:finack/src/features/expenses/presentation/pages/expenses_page.dart';
 import 'package:finack/src/features/overview/presentation/pages/overview_page.dart';
 import 'package:finack/src/features/journal/presentation/pages/journal_page.dart';
@@ -56,6 +57,11 @@ import 'package:finack/src/presentation/dashboard/dashboard_screen.dart';
       path: '/phoneVerification',
       page: PhoneVerificationScreen,
     ),
+    AutoRoute(
+      path: 'addEditBucket',
+      page: AddEditBucketScreen,
+      fullscreenDialog: true,
+    )
   ],
 )
 class $AppRouter {}

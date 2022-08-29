@@ -18,51 +18,49 @@ class LoginPage extends StatelessWidget {
       child: Scaffold(
         body: BlocListener<LoginCubit, LoginState>(
           listener: _stateListener,
-          child: Form(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0)
-                  .copyWith(bottom: context.systemPadding.bottom + 8),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Expanded(
-                    child: Center(
-                      child: Text(
-                        'FinAck',
-                        style: textTheme.headline1!.copyWith(
-                          color: textTheme.button!.color,
-                        ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0)
+                .copyWith(bottom: context.systemPadding.bottom + 8),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      'FinAck',
+                      style: textTheme.headline1!.copyWith(
+                        color: textTheme.button!.color,
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 100,
-                    child: BlocBuilder<LoginCubit, LoginState>(
-                      builder: (context, state) {
-                        final cubit = context.read<LoginCubit>();
-                        if (state is LoginInitial) {
-                          return Align(
-                            alignment: Alignment.bottomRight,
-                            child: OutlinedButton(
-                              onPressed: cubit.login,
-                              child: const Text('Login with Google'),
-                            ),
-                          );
-                        } else if (state is LoggingIn) {
-                          return const Align(
-                            alignment: Alignment.bottomCenter,
-                            child: LinearProgressIndicator(),
-                          );
-                        } else {
-                          return const Center();
-                        }
-                      },
-                    ),
+                ),
+                SizedBox(
+                  height: 100,
+                  child: BlocBuilder<LoginCubit, LoginState>(
+                    builder: (context, state) {
+                      final cubit = context.read<LoginCubit>();
+                      if (state is LoginInitial) {
+                        return Align(
+                          alignment: Alignment.bottomRight,
+                          child: OutlinedButton(
+                            onPressed: cubit.login,
+                            child: const Text('Login with Google'),
+                          ),
+                        );
+                      } else if (state is LoggingIn) {
+                        return const Align(
+                          alignment: Alignment.bottomCenter,
+                          child: LinearProgressIndicator(),
+                        );
+                      } else {
+                        return const Center();
+                      }
+                    },
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

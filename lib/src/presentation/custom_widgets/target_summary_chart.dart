@@ -1,28 +1,8 @@
 import 'dart:math';
 
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/constants/firebase.dart';
-
-class PersonalTarget extends Equatable {
-  final String? id;
-  final String title;
-  final bool isArchived;
-  final double targetPercentage;
-  final double achievedPercentage;
-
-  const PersonalTarget({
-    this.id,
-    required this.title,
-    required this.isArchived,
-    required this.targetPercentage,
-    required this.achievedPercentage,
-  });
-
-  @override
-  List<Object?> get props => [id, title, isArchived, targetPercentage];
-}
 
 class TargetSummaryChart extends StatelessWidget {
   final double value;
@@ -59,7 +39,7 @@ class TargetSummaryChart extends StatelessWidget {
   Widget circularProgressIndicator(double value) {
     return TweenAnimationBuilder<double>(
       tween: Tween<double>(begin: 0.0, end: value),
-      duration: animationDuration,
+      duration: kAnimationDuration,
       builder: (context, value, _) => CircularProgressIndicator(
         value: value / 100,
         strokeWidth: 8,

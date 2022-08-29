@@ -37,7 +37,7 @@ class CBottomNavBar extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         AnimatedContainer(
-                          duration: animationDuration,
+                          duration: kAnimationDuration,
                           decoration: BoxDecoration(
                             color: isSelected
                                 ? theme
@@ -61,7 +61,7 @@ class CBottomNavBar extends StatelessWidget {
                             ),
                             child: AnimatedSwitcher(
                               child: e.icon,
-                              duration: animationDuration,
+                              duration: kAnimationDuration,
                             ),
                           ),
                         ),

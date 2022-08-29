@@ -1,11 +1,5 @@
-import 'package:animations/animations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:finack/src/core/constants/firebase.dart';
-import 'package:finack/src/features/expenses/presentation/pages/expenses_page.dart';
-import 'package:finack/src/features/journal/presentation/pages/journal_page.dart';
-import 'package:finack/src/features/overview/presentation/pages/overview_page.dart';
-import 'package:finack/src/features/settings/presentation/pages/settings_page.dart';
-import 'package:finack/src/presentation/custom_widgets/bottom_navigation_bar.dart';
 import 'package:finack/src/presentation/custom_widgets/dashboard_scaffold.dart';
 import 'package:finack/src/presentation/routing/router.gr.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
@@ -18,7 +12,7 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AutoTabsRouter(
-      duration: animationDuration,
+      duration: kAnimationDuration,
       lazyLoad: true,
       routes: const [
         OverviewRouter(),

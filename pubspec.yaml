@@ -25,6 +25,7 @@ dependencies:
   dartz: ^0.10.1
   equatable: ^2.0.3
   get_it: ^7.2.0
+  intl: ^0.17.0
 
   # Firebase
   google_sign_in: ^5.4.0

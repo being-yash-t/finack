@@ -47,6 +47,7 @@ class OverviewPage extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
+        heroTag: 'new_record',
         onPressed: _newEntry,
         label: const Text('New Record'),
         icon: const Icon(FluentIcons.add_20_regular),

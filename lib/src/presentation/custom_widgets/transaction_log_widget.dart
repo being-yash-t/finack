@@ -69,7 +69,7 @@ class TransactionLogWidget extends StatelessWidget {
 
   void _bottomSheet(BuildContext context) => showMaterialModalBottomSheet(
         context: context,
-        duration: animationDuration,
+        duration: kAnimationDuration,
         builder: (context) => TransactionLogSheet(
           log: log,
         ),
